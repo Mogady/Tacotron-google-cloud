@@ -30,7 +30,7 @@ class DataFeeder(threading.Thread):
         self._datadir = os.path.dirname(metadata_filename)
         vocab_file = 'train.txt'
         subprocess.check_call(['gsutil', '-m' , 'cp', '-r',
-                       'gs://egy-assistant-1508608942794-mlengine/temp/training/*', '/tmp'])
+                       'gs://egy-assistant-1508608942794-mlengine/temp/training/*', '/tmp']) #change to your data storage path in google cloud
         with open(os.path.join('/tmp', vocab_file),'rb') as f:
              self._metadata = [line.decode('utf-8').strip().split('|') for line in f]
              hours = sum((int(x[2]) for x in self._metadata)) * hparams.frame_shift_ms / (3600 * 1000)
